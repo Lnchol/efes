@@ -1,78 +1,71 @@
-# How to use Efes
+# How to Use Efes
 
-## Starting a new project
+Efes is a starter kit. You copy it, answer some questions, and it sets up
+your new project for you.
 
-1. Copy this repo (fork/clone/copy the folder) into your new project's location.
-2. In your coding agent of choice, say `Follow EFES.md`.
-3. Answer the discovery interview (§2 in `EFES.md`) — every question has a
-   default; "defaults are fine" is a valid answer to any of them.
-4. Confirm the summary. The agent fills every `{{...}}` placeholder, writes
-   the project-specific docs, opens an ADR per locked decision, and
-   **specializes** (not recreates) the 4 agent files with your project's
-   real paths and test commands.
-5. `EFES.md` deletes itself once done — from here on every session just
-   reads `AGENTS.md` + the memory bank.
+## 1. Start a new project
 
-## Day to day, once a project exists
+1. Copy this repo to where your new project will live.
+2. Open it in Claude Code (or Codex, or Gemini) and type:
+   `Follow EFES.md`
+3. It will ask you questions about your project — name, what it does, what
+   language/tools you want. Not sure? Just say "use the default."
+4. When it shows you a summary, say yes to confirm.
+5. It fills in all the files and sets up 4 helper agents for your project.
+   `EFES.md` deletes itself when done — you don't need it anymore.
 
-- You drive the **general manager** — whichever top-level session you're
-  chatting in (Claude Code or Codex CLI). It decides what to delegate and
-  to which of the 4 agents; you don't usually need to name one yourself,
-  though you can ("use code-explorer to find X" / Codex's explicit
-  delegation prompt).
-- **Switching CLIs mid-project is expected.** Both read `AGENTS.md` (Claude
-  Code via `CLAUDE.md`, Codex natively) and both have the same 4 roles
-  (`.claude/agents/` and `.codex/agents/` stay in sync) — the memory bank
-  (`docs/memory/`) is what actually carries context across the switch, not
-  either tool's own state.
-- **Each session starts by reading** `AGENTS.md`, then
-  `docs/memory/context.md` → `progress.md` → `decisions.md` (§2 in
-  `AGENTS.md`), and **ends by updating `progress.md`** — that trail is what
-  makes picking up cold, days later or in the other CLI, actually work.
-- The general-manager model defaults (`.claude/settings.json` / Fable 5,
-  `.codex/config.toml` / flagship placeholder) are project-level, not
-  per-session — change them there if a project needs a different default.
-- Nothing auto-commits. Ask for it explicitly when you want it.
+## 2. Using it day to day
 
-## Using the skills
+You don't need to do anything special. Just talk to Claude Code or Codex
+like normal, and it automatically uses 4 helper agents behind the scenes:
 
-Skills live in `skills/` and are symlinked into `.claude/skills/` so Claude
-Code discovers them natively; Codex/Gemini read them on request. Ask for one
-by what it does ("spec this feature", "audit provider independence") rather
-than by exact name — the agent matches on the skill's description.
+- **code-explorer** — looks around the codebase first
+- **fast-task-executor** — handles quick, simple changes
+- **hard-task-specialist** — handles hard or complex changes
+- **validation-runner** — runs tests to check the work
 
-| Skill | Use it when |
+You can switch between Claude Code and Codex any time — both know about
+these 4 agents, and both read the same project notes, so nothing is lost.
+
+**Where the project "remembers" things:** the `docs/memory/` folder. Every
+session reads it at the start and updates it at the end. That's how it
+picks up where it left off, even days later.
+
+**Nothing gets committed to git unless you ask for it.**
+
+## 3. What are "skills"?
+
+Skills are small instruction files that tell the AI how to do a specific
+task well (like writing a commit message, or reviewing code). They live in
+the `skills/` folder. You don't need to call them by name — just ask for
+what you want, and the right one gets used.
+
+| Skill | Use it for |
 |---|---|
-| `wrap-session` | Ending any work session |
-| `write-adr` | Locking an architecture/tech decision |
-| `review-own-diff` | A change is "done" and needs a self-check before it counts |
-| `clean-code` | Writing or refactoring any code |
-| `write-tests` | Adding or changing behavior |
-| `ponytail` | Always on — keeps solutions minimal |
-| `caveman` | Always on — keeps chat output terse |
-| `spec-feature` | Starting new behavior-changing work |
-| `provider-audit` | Touching a third-party integration |
-| `module-boundary-check` | A change crosses more than one domain/module |
-| `commit-msg` | You've explicitly asked for a commit |
-| `specialize-agents` | The 4 agent files' project orientation has gone stale |
+| `wrap-session` | Wrapping up a work session |
+| `write-adr` | Writing down an important decision and why you made it |
+| `review-own-diff` | Double-checking your own change before calling it done |
+| `clean-code` | General code quality while writing/editing |
+| `write-tests` | Adding tests for new or changed behavior |
+| `ponytail` | Keeps solutions simple (always on) |
+| `caveman` | Keeps chat replies short (always on) |
+| `spec-feature` | Writing up a plan before building a new feature |
+| `provider-audit` | Checking a 3rd-party service isn't hardcoded in |
+| `module-boundary-check` | Checking parts of the code aren't tangled together |
+| `commit-msg` | Writing a proper commit message |
+| `specialize-agents` | Updating the 4 helper agents if the project changed a lot |
 
-## Adding a new skill
+## 4. Adding your own skill
 
-1. Copy `skills/_template/SKILL.md` to `skills/<name>/SKILL.md`, fill it in.
-2. Symlink it into Claude Code's discovery path:
+1. Copy `skills/_template/SKILL.md` to a new folder under `skills/`.
+2. Fill in what it does and when to use it.
+3. Link it so Claude Code can see it:
    `ln -s ../../skills/<name> .claude/skills/<name>`
-   (on Windows without symlink privileges, this silently falls back to a
-   junction/copy — still works, just keep both copies in sync by hand if
-   you ever edit through `.claude/skills/` directly instead of `skills/`).
-3. Note non-trivial additions in `docs/memory/decisions.md`.
 
-## Troubleshooting
+## 5. If something goes wrong
 
-- **A new `.claude/agents/*.md` file isn't showing up as available:** restart
-  the session — custom agents register at session start.
-- **`gh` push rejected for `.github/workflows/ci.yml`** ("refusing to allow
-  an OAuth App to create or update workflow... without `workflow` scope"):
-  run `gh auth refresh -h github.com -s workflow`, then push again.
-- **A file you didn't create shows up in `git status`:** check it isn't
-  another tool/session's artifact sharing this working directory before
-  staging it.
+- **New agent isn't showing up?** Restart the session.
+- **Can't push `.github/workflows/ci.yml` to GitHub?** Run:
+  `gh auth refresh -h github.com -s workflow`, then try again.
+- **See a file you don't recognize in the project?** Don't delete it —
+  check first, it might belong to something else running on your machine.
