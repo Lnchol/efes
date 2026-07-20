@@ -67,39 +67,8 @@ The protocol is **fully project-agnostic**: it encodes _how_ a sustainable proje
 
 ## How to use this
 
-**Starting a new project:**
-
-1. Copy this repo (fork/clone/copy the folder) into your new project's location.
-2. In your coding agent of choice, say `Follow EFES.md`.
-3. Answer the discovery interview (§2 in `EFES.md`) — every question has a
-   default; "defaults are fine" is a valid answer to any of them.
-4. Confirm the summary. The agent fills every `{{...}}` placeholder, writes
-   the project-specific docs, opens an ADR per locked decision, and
-   **specializes** (not recreates) the 4 agent files with your project's
-   real paths and test commands.
-5. `EFES.md` deletes itself once done — from here on every session just
-   reads `AGENTS.md` + the memory bank.
-
-**Day to day, once a project exists:**
-
-- You drive the **general manager** — whichever top-level session you're
-  chatting in (Claude Code or Codex CLI). It decides what to delegate and
-  to which of the 4 agents; you don't usually need to name one yourself,
-  though you can ("use code-explorer to find X" / Codex's explicit
-  delegation prompt).
-- **Switching CLIs mid-project is expected.** Both read `AGENTS.md` (Claude
-  Code via `CLAUDE.md`, Codex natively) and both have the same 4 roles
-  (`.claude/agents/` and `.codex/agents/` stay in sync) — the memory bank
-  (`docs/memory/`) is what actually carries context across the switch, not
-  either tool's own state.
-- **Each session starts by reading** `AGENTS.md`, then
-  `docs/memory/context.md` → `progress.md` → `decisions.md` (§2 in
-  `AGENTS.md`), and **ends by updating `progress.md`** — that trail is what
-  makes picking up cold, days later or in the other CLI, actually work.
-- The general-manager model defaults (`.claude/settings.json` / Fable 5,
-  `.codex/config.toml` / flagship placeholder) are project-level, not
-  per-session — change them there if a project needs a different default.
-- Nothing auto-commits. Ask for it explicitly when you want it.
+See [`HOW-TO-USE.md`](./HOW-TO-USE.md) — starting a new project, day-to-day
+usage once one exists, using/adding skills, and troubleshooting.
 
 ## Core principles
 
