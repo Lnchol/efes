@@ -2,13 +2,16 @@
 
 > Newest entry on top. Each entry: what changed + the **Next step**.
 
-## 2026-07-21 — Made the repo public, template-enabled, and safe to share
+## 2026-07-21 — Made the repo public and safe to share
 
-- Made the GitHub repo public and marked it a **template repository** —
-  `gh repo create <name> --template Lnchol/efes --private --clone` (or the
-  "Use this template" button) is now the one-command way to copy it, with a
-  clean history instead of a plain clone. Documented in `README.md` and
-  `HOW-TO-USE.md`.
+- Made the GitHub repo public. Verified end-to-end that
+  `git clone --depth 1 https://github.com/Lnchol/efes.git my-project &&
+  rm -rf my-project/.git` copies it in one command with **no GitHub account
+  or new repo needed** — just the files, no `.git`, no link back to `efes`
+  (tried the repo-as-template approach first, `gh repo create --template`,
+  but that requires the copier to create their own GitHub repo — not what
+  was wanted, so switched to a plain clone-and-strip and turned the
+  template flag back off). Documented in `README.md` and `HOW-TO-USE.md`.
 - `LICENSE` now explicitly permits anyone given access to the repo to use,
   copy, modify, and build on it for their own projects — closes the gap
   where sharing it didn't actually grant permission to use it.

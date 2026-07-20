@@ -6,9 +6,9 @@ delete it); your own history lives in `docs/memory/progress.md`.
 
 ## v0.7.0 — 2026-07-21
 
-- Made the repo public and marked it a **GitHub template repository** —
-  `gh repo create <name> --template Lnchol/efes --clone` (or "Use this
-  template") is now the one-command way to copy it.
+- Made the repo public. One command copies it with no GitHub account or new
+  repo required — `git clone --depth 1 https://github.com/Lnchol/efes.git
+  my-project && rm -rf my-project/.git` — just the files, no `.git`.
 - `LICENSE` now explicitly permits anyone given access to the repo to use,
   copy, modify, and build on it for their own projects
   ([ADR-0008](docs/architecture/adr/0008-harden-for-sharing.md)).

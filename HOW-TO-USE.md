@@ -5,19 +5,16 @@ your new project for you.
 
 ## 1. Start a new project
 
-One command, using [GitHub CLI](https://cli.github.com/) (`gh`):
+One command — just downloads the files, no GitHub account or new repo needed:
 
 ```bash
-gh repo create my-new-project --template Lnchol/efes --private --clone
-cd my-new-project
+git clone --depth 1 https://github.com/Lnchol/efes.git my-project && rm -rf my-project/.git
 ```
 
-That creates a brand-new repo under your own account (a clean copy, no
-shared history with `efes`), clones it locally, and moves you into it.
-Swap `--private` for `--public` if you want it public. Don't have `gh`? Use
-GitHub's green **"Use this template"** button on the
-[efes repo page](https://github.com/Lnchol/efes) instead — same result,
-no command needed.
+That gives you a plain `my-project` folder with all the files, no `.git`,
+no link back to `efes`. Only needs `git` installed — nothing else. When
+you're ready to put your own project on GitHub later, `cd my-project && git
+init` (that's a separate step, whenever you actually want a repo).
 
 Then:
 
