@@ -46,10 +46,10 @@ skills/                     # portable, tool-agnostic SKILL.md capabilities
 
 **Mode A — fresh repo:** drop `EFES.md` into an empty repo and the agent generates the whole governance tree from scratch.
 
-**Mode B — copy this repo (recommended):** the skeleton is already here, so you skip straight to filling it in. One command, no GitHub account or new repo required — just the files:
+**Mode B — copy this repo (recommended):** the skeleton is already here, so you skip straight to filling it in. `cd` into your project's folder, then one command drops the files straight in — no GitHub account, no new repo, no placeholder folder name:
 
 ```bash
-git clone --depth 1 https://github.com/Lnchol/efes.git my-project && rm -rf my-project/.git
+curl -sL https://github.com/Lnchol/efes/tarball/main | tar xz --strip-components=1
 ```
 
 Then, in your coding agent of choice:

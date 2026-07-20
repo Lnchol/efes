@@ -6,9 +6,10 @@ delete it); your own history lives in `docs/memory/progress.md`.
 
 ## v0.7.0 — 2026-07-21
 
-- Made the repo public. One command copies it with no GitHub account or new
-  repo required — `git clone --depth 1 https://github.com/Lnchol/efes.git
-  my-project && rm -rf my-project/.git` — just the files, no `.git`.
+- Made the repo public. One command drops the files straight into whatever
+  folder you're already in — `curl -sL
+  https://github.com/Lnchol/efes/tarball/main | tar xz --strip-components=1`
+  — no GitHub account, no new repo, no `.git`, no placeholder folder name.
 - `LICENSE` now explicitly permits anyone given access to the repo to use,
   copy, modify, and build on it for their own projects
   ([ADR-0008](docs/architecture/adr/0008-harden-for-sharing.md)).

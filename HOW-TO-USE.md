@@ -5,20 +5,21 @@ your new project for you.
 
 ## 1. Start a new project
 
-One command — just downloads the files, no GitHub account or new repo needed:
+`cd` into your project's folder (whatever you've already named it — empty
+or not, doesn't matter), then run:
 
 ```bash
-git clone --depth 1 https://github.com/Lnchol/efes.git my-project && rm -rf my-project/.git
+curl -sL https://github.com/Lnchol/efes/tarball/main | tar xz --strip-components=1
 ```
 
-That gives you a plain `my-project` folder with all the files, no `.git`,
-no link back to `efes`. Only needs `git` installed — nothing else. When
-you're ready to put your own project on GitHub later, `cd my-project && git
-init` (that's a separate step, whenever you actually want a repo).
+That drops all the bootstrap files straight into the folder you're
+already in — no GitHub account, no new repo, no `.git`, no placeholder
+folder name to rename. Anything already in the folder is left alone. Only
+needs `curl` and `tar` — both already on Mac, Linux, and modern Windows.
 
 Then:
 
-1. Open the new folder in Claude Code (or Codex, or Gemini) and type:
+1. Open the folder in Claude Code (or Codex, or Gemini) and type:
    `Follow EFES.md`
 2. It will ask you questions about your project — name, what it does, what
    language/tools you want. Not sure? Just say "use the default."

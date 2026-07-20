@@ -4,14 +4,17 @@
 
 ## 2026-07-21 — Made the repo public and safe to share
 
-- Made the GitHub repo public. Verified end-to-end that
-  `git clone --depth 1 https://github.com/Lnchol/efes.git my-project &&
-  rm -rf my-project/.git` copies it in one command with **no GitHub account
-  or new repo needed** — just the files, no `.git`, no link back to `efes`
-  (tried the repo-as-template approach first, `gh repo create --template`,
-  but that requires the copier to create their own GitHub repo — not what
-  was wanted, so switched to a plain clone-and-strip and turned the
-  template flag back off). Documented in `README.md` and `HOW-TO-USE.md`.
+- Made the GitHub repo public. Tried two copy mechanisms before landing on
+  the final one: (1) `gh repo create --template` — rejected, forces the
+  copier to create their own GitHub repo; (2) `git clone` into a named
+  folder + strip `.git` — rejected, still forces a placeholder folder name
+  instead of using the folder the copier is already in. Landed on: `cd`
+  into your project folder, then `curl -sL
+  https://github.com/Lnchol/efes/tarball/main | tar xz --strip-components=1`
+  — drops the files straight into the current folder, leaves any existing
+  files alone, no `.git`, no account/repo needed. Verified against both an
+  empty folder and one with a pre-existing file. Turned the GitHub template
+  flag back off. Documented in `README.md` and `HOW-TO-USE.md`.
 - `LICENSE` now explicitly permits anyone given access to the repo to use,
   copy, modify, and build on it for their own projects — closes the gap
   where sharing it didn't actually grant permission to use it.
