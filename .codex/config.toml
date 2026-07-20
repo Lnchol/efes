@@ -1,5 +1,6 @@
-# Default model for the top-level ("general manager") Codex session — the
-# one that decides delegation to .codex/agents/. Fill with the current
-# flagship model id (check `codex models list`); not guessed here since it
-# may not match what's available on your account/CLI version.
-model = "{{CODEX_FLAGSHIP_MODEL}}"
+# Optional: pin a default model for the top-level ("general manager") Codex
+# session — the one that decides delegation to .codex/agents/. Left unset so
+# this template works for anyone regardless of which models their account
+# has access to. To pin one: check `codex models list`, then uncomment and
+# fill in:
+# model = "gpt-5.x"

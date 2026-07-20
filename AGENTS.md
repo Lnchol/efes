@@ -138,10 +138,12 @@ the default tools (§7), added on demand for any other tool. Per-tool mechanism:
 This fork vendors a fixed 4-role delegation roster, available in both Claude
 Code (`.claude/agents/`) and Codex CLI (`.codex/agents/`) formats. The
 **general manager is the top-level session itself** — no 5th orchestrator
-agent — driven on the most capable available model, since it is the one
-deciding which of the 4 to call: Claude Code defaults to Fable 5
-(`.claude/settings.json`), Codex defaults to its flagship model
-(`.codex/config.toml`).
+agent — since it's the one deciding which of the 4 to call. **Recommended:**
+run it on the most capable model you have access to (e.g. Fable 5 or Opus
+for Claude Code). Not enforced via a config default, since not everyone
+sharing/forking this repo has access to the same models — set it yourself
+per session, or pin one in `.claude/settings.json` (`{"model": "..."}`) /
+`.codex/config.toml` (`model = "..."`) if you want it to stick.
 
 | Role | Claude Code | Codex | Model / effort | Access | Job |
 | --- | --- | --- | --- | --- | --- |

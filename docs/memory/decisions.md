@@ -2,6 +2,10 @@
 
 > One short line per locked decision, newest on top, linking its ADR.
 
+- Hardened for sharing: permissive-use license clause (anyone with repo
+  access may use/copy/modify for their own projects), removed the enforced
+  general-manager model default in favor of a documented recommendation →
+  [ADR-0008](../architecture/adr/0008-harden-for-sharing.md)
 - Vendored a fixed 4-role agent delegation roster (explore/fast/hard/
   validate) for Claude Code + Codex CLI, specialized per project by the
   bootstrap interview; general manager = top-level session, no 5th

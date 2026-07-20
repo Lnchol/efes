@@ -255,8 +255,11 @@ them pick. Possible layers (not a checklist to force):
   does **not** decide whether to create these; it gathers what's needed to
   **specialize** them for this project: key paths/entry points, the actual
   test/validation commands (`validation-runner`'s job), and a concrete
-  fast-vs-hard complexity split. Confirm the general-manager model default
-  (`.claude/settings.json` / `.codex/config.toml`) still fits, or change it.
+  fast-vs-hard complexity split. Ask which model the user wants to drive the
+  general-manager session on — recommend the most capable one they have
+  access to, and optionally pin it in `.claude/settings.json` /
+  `.codex/config.toml` if they want it to stick (not required; not everyone
+  forking this has access to the same models).
 - **Slash commands** — optional, **tool-specific** wrappers (`/wrap`,
   `/adr`, `/feature`, lane-switch), one set per agent in use, mapping to the
   `skills/`. **Do not pre-generate them.** Based on the tool the user is

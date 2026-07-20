@@ -4,6 +4,25 @@ Versions of the **skeleton itself**, so a forked project knows what it diverged
 from and can cherry-pick upstream improvements. Forks: keep this file as-is (or
 delete it); your own history lives in `docs/memory/progress.md`.
 
+## v0.7.0 — 2026-07-21
+
+- Made the repo public and marked it a **GitHub template repository** —
+  `gh repo create <name> --template Lnchol/efes --clone` (or "Use this
+  template") is now the one-command way to copy it.
+- `LICENSE` now explicitly permits anyone given access to the repo to use,
+  copy, modify, and build on it for their own projects
+  ([ADR-0008](docs/architecture/adr/0008-harden-for-sharing.md)).
+- Removed the enforced general-manager model default
+  (`.claude/settings.json` deleted, `.codex/config.toml`'s `model =`
+  commented out) so copying this template can't fail on a model the copier
+  doesn't have access to; `AGENTS.md` §10 / `EFES.md` §2F now recommend a
+  model instead of enforcing one.
+- Added 5 skills (`spec-feature`, `provider-audit`, `module-boundary-check`,
+  `commit-msg`, `specialize-agents`) and fixed all 12 skills' wiring into
+  `.claude/skills/` (previously documented as pre-wired but never actually
+  linked).
+- `HOW-TO-USE.md` split out of `README.md` and rewritten in plainer language.
+
 ## v0.6.0 — 2026-07-20
 
 - **Established the project identity as Efes**, consistently across every

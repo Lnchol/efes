@@ -2,6 +2,28 @@
 
 > Newest entry on top. Each entry: what changed + the **Next step**.
 
+## 2026-07-21 — Made the repo public, template-enabled, and safe to share
+
+- Made the GitHub repo public and marked it a **template repository** —
+  `gh repo create <name> --template Lnchol/efes --private --clone` (or the
+  "Use this template" button) is now the one-command way to copy it, with a
+  clean history instead of a plain clone. Documented in `README.md` and
+  `HOW-TO-USE.md`.
+- `LICENSE` now explicitly permits anyone given access to the repo to use,
+  copy, modify, and build on it for their own projects — closes the gap
+  where sharing it didn't actually grant permission to use it.
+  ([ADR-0008](../architecture/adr/0008-harden-for-sharing.md))
+- Removed the enforced general-manager model default (`.claude/settings.json`
+  deleted, `.codex/config.toml`'s `model =` commented out) — a hard-coded
+  Fable 5 / flagship pin could error for someone without access to that
+  model. `AGENTS.md` §10 and `EFES.md` §2F now frame it as a recommendation.
+- Rewrote `HOW-TO-USE.md` in plainer language per request.
+- **Open:** commit history still shows the real email
+  `efekosan09@outlook.com` (now public) — offered to rewrite it to a GitHub
+  no-reply address; needs explicit go-ahead since it requires a force-push.
+- **Next step:** fork this repo for the first real project and run the
+  `EFES.md` interview.
+
 ## 2026-07-21 — Added 5 skills, wired the full skill roster
 
 - Added `spec-feature`, `provider-audit`, `module-boundary-check`,

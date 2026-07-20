@@ -46,12 +46,14 @@ skills/                     # portable, tool-agnostic SKILL.md capabilities
 
 **Mode A — fresh repo:** drop `EFES.md` into an empty repo and the agent generates the whole governance tree from scratch.
 
-**Mode B — fork this repo (recommended):** the skeleton is already here, so you skip straight to filling it in.
+**Mode B — copy this repo (recommended):** the skeleton is already here, so you skip straight to filling it in. `efes` is a GitHub template repo — one command gets you a clean copy with no shared history:
 
 ```bash
-# Use this repository as a template, then:
-git clone <your-fork> my-project && cd my-project
+gh repo create my-project --template Lnchol/efes --private --clone && cd my-project
 ```
+
+No `gh` CLI? Use the **"Use this template"** button on the
+[efes repo page](https://github.com/Lnchol/efes) instead.
 
 Then, in your coding agent of choice:
 
@@ -99,9 +101,8 @@ GEMINI.md                   # thin wrapper → points to AGENTS.md (Gemini CLI)
                             #   Codex CLI reads AGENTS.md directly — no wrapper file
 .claude/agents/              # 4-role delegation roster: code-explorer, fast-task-executor,
                             #   hard-task-specialist, validation-runner (Claude Code format)
-.claude/settings.json        # general-manager default model (Fable 5)
 .codex/agents/                # same 4-role roster, Codex TOML format
-.codex/config.toml            # general-manager default model (flagship, placeholder)
+.codex/config.toml            # general-manager model: optional, commented out by default
 .claude/skills/              # skill wiring for Claude Code (symlinks into skills/)
 README.txt                  # NFO-style entry point for humans & agents
 SECURITY.md                 # reporting channel + pointer to the full policy

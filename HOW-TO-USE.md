@@ -5,13 +5,28 @@ your new project for you.
 
 ## 1. Start a new project
 
-1. Copy this repo to where your new project will live.
-2. Open it in Claude Code (or Codex, or Gemini) and type:
+One command, using [GitHub CLI](https://cli.github.com/) (`gh`):
+
+```bash
+gh repo create my-new-project --template Lnchol/efes --private --clone
+cd my-new-project
+```
+
+That creates a brand-new repo under your own account (a clean copy, no
+shared history with `efes`), clones it locally, and moves you into it.
+Swap `--private` for `--public` if you want it public. Don't have `gh`? Use
+GitHub's green **"Use this template"** button on the
+[efes repo page](https://github.com/Lnchol/efes) instead — same result,
+no command needed.
+
+Then:
+
+1. Open the new folder in Claude Code (or Codex, or Gemini) and type:
    `Follow EFES.md`
-3. It will ask you questions about your project — name, what it does, what
+2. It will ask you questions about your project — name, what it does, what
    language/tools you want. Not sure? Just say "use the default."
-4. When it shows you a summary, say yes to confirm.
-5. It fills in all the files and sets up 4 helper agents for your project.
+3. When it shows you a summary, say yes to confirm.
+4. It fills in all the files and sets up 4 helper agents for your project.
    `EFES.md` deletes itself when done — you don't need it anymore.
 
 ## 2. Using it day to day
